@@ -33,9 +33,9 @@
 #define pinIR 2
 
 // Choose the IR protocol of your remote. See the other example for this.
-CNec IRLremote;
+//CNec IRLremote;
 //CPanasonic IRLremote;
-//CHashIR IRLremote;
+CHashIR IRLremote;
 //#define IRLremote Sony12
 
 #define pinLed LED_BUILTIN

@@ -27,8 +27,8 @@
 
 #include <IRremote.h>
 
-int RECV_PIN = 11;
-int LED_PIN = 3;
+int RECV_PIN = 2;
+int LED_PIN = 13;
 
 IRrecv irrecv(RECV_PIN);
 IRsend irsend;

@@ -19,18 +19,18 @@
 // ***************************** НАСТРОЙКИ *****************************
 
 // ----- настройка ИК пульта
-#define REMOTE_TYPE 1       // 0 - без пульта, 1 - пульт от WAVGAT, 2 - пульт от KEYES, 3 - кастомный пульт
+#define REMOTE_TYPE 3       // 0 - без пульта, 1 - пульт от WAVGAT, 2 - пульт от KEYES, 3 - кастомный пульт
 // система может работать С ЛЮБЫМ ИК ПУЛЬТОМ (практически). Коды для своего пульта можно задать начиная со строки 160 в прошивке. Коды пультов определяются скетчем IRtest_2.0, читай инструкцию
 
 // ----- настройки параметров
 #define KEEP_SETTINGS 1     // хранить ВСЕ настройки в энергонезависимой памяти
 #define KEEP_STATE 1		    // сохранять в памяти состояние вкл/выкл системы (с пульта)
-#define RESET_SETTINGS 0    // сброс настроек в EEPROM памяти (поставить 1, прошиться, поставить обратно 0, прошиться. Всё)
-#define SETTINGS_LOG 0      // вывод всех настроек из EEPROM в порт при запуске
+#define RESET_SETTINGS 0   // сброс настроек в EEPROM памяти (поставить 1, прошиться, поставить обратно 0, прошиться. Всё)
+#define SETTINGS_LOG 1      // вывод всех настроек из EEPROM в порт при запуске
 
 // ----- настройки ленты
-#define NUM_LEDS 60        // количество светодиодов (данная версия поддерживает до 410 штук)
-#define CURRENT_LIMIT 3000  // лимит по току в МИЛЛИАМПЕРАХ, автоматически управляет яркостью (пожалей свой блок питания!) 0 - выключить лимит
+#define NUM_LEDS 148        // количество светодиодов (данная версия поддерживает до 410 штук)
+#define CURRENT_LIMIT 2500  // лимит по току в МИЛЛИАМПЕРАХ, автоматически управляет яркостью (пожалей свой блок питания!) 0 - выключить лимит
 byte BRIGHTNESS = 200;      // яркость по умолчанию (0 - 255)
 
 // ----- пины подключения
@@ -56,14 +56,14 @@ byte BRIGHTNESS = 200;      // яркость по умолчанию (0 - 255)
 float RAINBOW_STEP = 5.00;         // шаг изменения цвета радуги
 
 // ----- отрисовка
-#define MODE 0                    // режим при запуске
+#define MODE 8                    // режим при запуске
 #define MAIN_LOOP 5               // период основного цикла отрисовки (по умолчанию 5)
 
 // ----- сигнал
-#define MONO 1                    // 1 - только один канал (ПРАВЫЙ!!!!! SOUND_R!!!!!), 0 - два канала
+#define MONO 0                    // 1 - только один канал (ПРАВЫЙ!!!!! SOUND_R!!!!!), 0 - два канала
 #define EXP 1.4                   // степень усиления сигнала (для более "резкой" работы) (по умолчанию 1.4)
-#define POTENT 0                  // 1 - используем потенциометр, 0 - используется внутренний источник опорного напряжения 1.1 В
-byte EMPTY_BRIGHT = 30;           // яркость "не горящих" светодиодов (0 - 255)
+#define POTENT 1                  // 1 - используем потенциометр, 0 - используется внутренний источник опорного напряжения 1.1 В
+byte EMPTY_BRIGHT = 5;           // яркость "не горящих" светодиодов (0 - 255)
 #define EMPTY_COLOR HUE_PURPLE    // цвет "не горящих" светодиодов. Будет чёрный, если яркость 0
 
 // ----- нижний порог шумов
@@ -87,11 +87,11 @@ float MAX_COEF_FREQ = 1.2;        // коэффициент порога для 
 #define HIGH_COLOR HUE_YELLOW     // цвет высоких
 
 // ----- режим стробоскопа
-uint16_t STROBE_PERIOD = 140;     // период вспышек, миллисекунды
-#define STROBE_DUTY 20            // скважность вспышек (1 - 99) - отношение времени вспышки ко времени темноты
-#define STROBE_COLOR HUE_YELLOW   // цвет стробоскопа
-#define STROBE_SAT 0              // насыщенность. Если 0 - цвет будет БЕЛЫЙ при любом цвете (0 - 255)
-byte STROBE_SMOOTH = 200;         // скорость нарастания/угасания вспышки (0 - 255)
+uint16_t STROBE_PERIOD = 100;     // период вспышек, миллисекунды
+#define STROBE_DUTY 50            // скважность вспышек (1 - 99) - отношение времени вспышки ко времени темноты
+#define STROBE_COLOR HUE_GREEN   // цвет стробоскопа
+#define STROBE_SAT 250              // насыщенность. Если 0 - цвет будет БЕЛЫЙ при любом цвете (0 - 255)
+byte STROBE_SMOOTH = 128;         // скорость нарастания/угасания вспышки (0 - 255)
 
 // ----- режим подсветки
 byte LIGHT_COLOR = 0;             // начальный цвет подсветки
@@ -164,23 +164,23 @@ byte HUE_STEP = 5;
 
 // ----- КНОПКИ СВОЕГО ПУЛЬТА -----
 #if REMOTE_TYPE == 3
-#define BUTT_UP     0xE51CA6AD
-#define BUTT_DOWN   0xD22353AD
-#define BUTT_LEFT   0x517068AD
-#define BUTT_RIGHT  0xAC2A56AD
-#define BUTT_OK     0x1B92DDAD
-#define BUTT_1      0x68E456AD
-#define BUTT_2      0xF08A26AD
-#define BUTT_3      0x151CD6AD
-#define BUTT_4      0x18319BAD
-#define BUTT_5      0xF39EEBAD
-#define BUTT_6      0x4AABDFAD
-#define BUTT_7      0xE25410AD
-#define BUTT_8      0x297C76AD
-#define BUTT_9      0x14CE54AD
-#define BUTT_0      0xC089F6AD
-#define BUTT_STAR   0xAF3F1BAD  // *
-#define BUTT_HASH   0x38379AD   // #
+#define BUTT_UP     0xD22353AD  // +
+#define BUTT_DOWN   0x5484B6AD  // -
+#define BUTT_LEFT   0x4E5BA3AD  // CH-
+#define BUTT_RIGHT  0xE207E1AD  // CH+
+#define BUTT_OK     0xE51CA6AD  // CH
+#define BUTT_1      0x18319BAD  
+#define BUTT_2      0xF39EEBAD  
+#define BUTT_3      0x4AABDFAD
+#define BUTT_4      0xE25410AD
+#define BUTT_5      0x297C76AD
+#define BUTT_6      0x14CE54AD
+#define BUTT_7      0xAF3F1BAD
+#define BUTT_8      0xC089F6AD
+#define BUTT_9      0x38379AD
+#define BUTT_0      0x68E456AD
+#define BUTT_STAR   0xF08A26AD  // 100+
+#define BUTT_HASH   0x151CD6AD  // 200+
 #endif
 
 
